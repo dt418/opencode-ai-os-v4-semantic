@@ -2,7 +2,7 @@
 
 ## 1.0.5
 
-*Apr 30, 2026*
+*Released 2026-04-30*
 
 ### Documentation
 
@@ -12,7 +12,7 @@
 
 ## 1.0.4
 
-*Apr 30, 2026*
+*Released 2026-04-30*
 
 ### Documentation
 
@@ -22,7 +22,7 @@
 
 ## 1.0.3
 
-*Apr 30, 2026*
+*Released 2026-04-30*
 
 ### Fixes
 
@@ -32,7 +32,7 @@
 
 ## 1.0.2
 
-*Apr 30, 2026*
+*Released 2026-04-30*
 
 ### Improvements
 
@@ -42,7 +42,7 @@
 
 ## 1.0.1
 
-*Apr 30, 2026*
+*Released 2026-04-30*
 
 ### Improvements
 
@@ -65,7 +65,7 @@
 
 ## 1.0.0
 
-*Initial release*
+Initial release
 
 ### Features
 

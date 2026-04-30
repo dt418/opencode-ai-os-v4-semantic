@@ -4,7 +4,8 @@ An adaptive semantic AI execution engine for OpenCode that learns from past task
 
 ## How It Works
 
-```
+```text
+
   Input  →  Embed  →  Memory Retrieval  →  Policy Synthesis  →  Planner  →  Coder
                                                                               │
                                                 Reasoning depth >= 3 ? ◄──────┘
@@ -22,7 +23,7 @@ An adaptive semantic AI execution engine for OpenCode that learns from past task
                                                        │
                                                        └─── next request ───┐
                                                                               │
-                                               Memory Retrieval ◄─────────────┘
+                                                                                               Memory Retrieval ◄─────────────┘
 ```
 
 Every request is embedded into a 128-dimension vector, compared against past task memories via cosine similarity, and used to synthesize a dynamic execution policy that controls pipeline depth, tool usage, and reasoning intensity.
@@ -86,7 +87,7 @@ interface ExecutionPolicy {
 
 ## File Structure
 
-```
+```text
 src/
   index.ts      — Plugin entry, hooks into OpenCode events
   engine.ts     — Adaptive engine orchestrator
