@@ -4,13 +4,22 @@ An adaptive semantic AI execution engine for OpenCode that learns from past task
 
 ## How It Works
 
-```
-Input -> Embed -> Memory Retrieval -> Policy Synthesis -> Planner -> Coder -> (Reviewer) -> Output
-                                                                                            |
-                                                      +--- Store in semantic memory <------+
+```mermaid
+flowchart LR
+    A[Input] --> B[Embed]
+    B --> C[Memory Retrieval]
+    C --> D[Policy Synthesis]
+    D --> E[Planner]
+    E --> F[Coder]
+    F --> G{Reasoning<br>depth >= 3?}
+    G -->|Yes| H[Reviewer]
+    G -->|No| I[Output]
+    H --> I
+    I --> J[(Semantic Memory)]
+    J -.->|next request| C
 ```
 
-Every request is embedded into a 32-dimension vector, compared against past task memories via cosine similarity, and used to synthesize a dynamic execution policy that controls pipeline depth, tool usage, and reasoning intensity.
+Every request is embedded into a 128-dimension vector, compared against past task memories via cosine similarity, and used to synthesize a dynamic execution policy that controls pipeline depth, tool usage, and reasoning intensity.
 
 ## Core Design
 
@@ -27,18 +36,17 @@ npm install opencode-ai-os-v4-semantic
 
 ## Usage (as an OpenCode plugin)
 
-The plugin hooks into OpenCode's request pipeline automatically:
+Add the plugin to your `opencode.json`:
 
-```ts
-// In your OpenCode config
-import semanticPlugin from "opencode-ai-os-v4-semantic";
-
-export default {
-  plugins: [semanticPlugin],
-};
+```json
+{
+  "plugin": ["opencode-ai-os-v4-semantic"]
+}
 ```
 
-Every request passes through the semantic engine. Results are attached to `ctx.meta.semanticEngine`.
+OpenCode will auto-load the plugin at startup. It hooks into `message.updated` events, runs the adaptive semantic engine on every user message, and injects the resulting policy + memory context into the session.
+
+Results are also logged via OpenCode's structured logging system (visible with debug-level logging).
 
 ## Programmatic API
 
@@ -74,9 +82,9 @@ interface ExecutionPolicy {
 
 ```
 src/
-  index.ts      — Plugin entry, hooks into OpenCode
+  index.ts      — Plugin entry, hooks into OpenCode events
   engine.ts     — Adaptive engine orchestrator
-  embed.ts      — Deterministic embedding (32-dim)
+  embed.ts      — Deterministic embedding (128-dim)
   similarity.ts — Cosine similarity computation
   memory.ts     — In-memory semantic vector store
   policy.ts     — Policy synthesizer (replaces hardcoded modes)
