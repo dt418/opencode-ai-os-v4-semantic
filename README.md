@@ -4,19 +4,25 @@ An adaptive semantic AI execution engine for OpenCode that learns from past task
 
 ## How It Works
 
-```mermaid
-flowchart LR
-    A[Input] --> B[Embed]
-    B --> C[Memory Retrieval]
-    C --> D[Policy Synthesis]
-    D --> E[Planner]
-    E --> F[Coder]
-    F --> G{Reasoning<br>depth >= 3?}
-    G -->|Yes| H[Reviewer]
-    G -->|No| I[Output]
-    H --> I
-    I --> J[(Semantic Memory)]
-    J -.->|next request| C
+```
+  Input  →  Embed  →  Memory Retrieval  →  Policy Synthesis  →  Planner  →  Coder
+                                                                              │
+                                                Reasoning depth >= 3 ? ◄──────┘
+                                               ╱ Yes              No ╲
+                                              ▼                      ▼
+                                          Reviewer                 Output
+                                              ╲                      ╱
+                                               ╲                    ╱
+                                                ╲                  ╱
+                                                  ▼                ▼
+                                                    Output
+                                                       │
+                                                       ▼
+                                                Semantic Memory
+                                                       │
+                                                       └─── next request ───┐
+                                                                              │
+                                               Memory Retrieval ◄─────────────┘
 ```
 
 Every request is embedded into a 128-dimension vector, compared against past task memories via cosine similarity, and used to synthesize a dynamic execution policy that controls pipeline depth, tool usage, and reasoning intensity.
