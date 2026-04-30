@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.5
+
+*Apr 30, 2026*
+
+### Documentation
+
+- **GitHub issue templates**: Added bug report and feature request templates to `.github/ISSUE_TEMPLATE/`. Users can now file structured issues directly from the repository.
+
+---
+
+## 1.0.4
+
+*Apr 30, 2026*
+
+### Documentation
+
+- **Changelog backfill**: Added missing v1.0.2 and v1.0.3 entries to CHANGELOG.md.
+
+---
+
 ## 1.0.3
 
 *Apr 30, 2026*

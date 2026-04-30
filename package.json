@@ -1,6 +1,6 @@
 {
   "name": "opencode-ai-os-v4-semantic",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Adaptive semantic AI execution engine for OpenCode — learns from past tasks and dynamically generates execution policy without hardcoded modes.",
   "type": "module",
   "main": "./dist/index.js",

@@ -97,6 +97,11 @@ src/
   exec.ts       — Planner, coder, reviewer pipeline
 ```
 
+## Contributing
+
+- [Bug reports & feature requests](https://github.com/dt418/opencode-ai-os-v4-semantic/issues/new/choose) — structured issue templates
+- [Changelog](CHANGELOG.md) — release history and changes
+
 ## License
 
 MIT
