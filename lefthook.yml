@@ -9,8 +9,7 @@ pre-commit:
     test:
       run: npm test
 
-# commit-msg hook disabled: no standard conventional-commit validator npm package
-# commit-msg:
-#   commands:
-#     conventional:
-#       run: npx lefthook-commit-msg-hook {commit_msg_file}
+commit-msg:
+  commands:
+    commitlint:
+      run: npx commitlint --edit {1}
