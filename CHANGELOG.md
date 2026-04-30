@@ -1,0 +1,38 @@
+# Changelog
+
+## 1.0.1
+
+*Apr 30, 2026*
+
+### Improvements
+
+- **Real OpenCode plugin API**: Replaced the previous SDK-based plugin interface with the official OpenCode event hooks system. The plugin now uses `message.updated` events to automatically intercept user messages and run the adaptive semantic engine — no manual wiring needed.
+
+- **Automatic session context injection**: When a similar past task is found, the plugin injects the synthesized policy and memory context directly into your OpenCode session, helping the AI make better decisions.
+
+- **Structured logging**: Policy results (steps, tool usage, reasoning depth, similarity scores) are logged through OpenCode's built-in logging system for easy debugging and observability.
+
+- **Mermaid architecture diagram**: The README now includes a proper Mermaid flowchart showing the full pipeline from input through embedding, memory retrieval, policy synthesis, planning, coding, review, and memory storage.
+
+### Changes
+
+- Updated plugin config format: add `"opencode-ai-os-v4-semantic"` to the `plugin` array in your `opencode.json`
+- Re-exported `getMemoryState()` for programmatic API consumers
+- Corrected embedding dimension documentation (128-dim, not 32-dim)
+- Added `@opencode-ai/plugin` as an optional peer dependency for TypeScript users
+
+---
+
+## 1.0.0
+
+*Initial release*
+
+### Features
+
+- **Adaptive semantic engine**: Dynamically generates execution policy per request — no hardcoded FAST/DEEP/MCP modes
+- **Deterministic 128-dim embedding**: Character trigram + word n-gram hashing via FNV-1a — zero external dependencies
+- **In-memory vector store**: Cosine similarity retrieval with LRU cap (1000 entries)
+- **Policy synthesizer**: Blends complexity analysis with similarity-weighted memory reuse
+- **Execution pipeline**: Planner → Coder → Reviewer (gate controlled by reasoning depth)
+- **Full TypeScript strict mode**: Zero external runtime dependencies
+- **33/33 verification tests passing**
