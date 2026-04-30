@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.11
+
+*Released 2026-04-30*
+
+### Documentation
+
+- **Fixed flowchart**: Replaced broken ASCII diagram with clean box-drawing layout showing the full pipeline with branching depth gate and memory feedback loop.
+
+---
+
+## 1.0.10
+
+*Released 2026-04-30*
+
+### Documentation
+
+- **Changelog backfill**: Added entries for v1.0.6 (contributing links), v1.0.7 (CI + lefthook + markdownlint), v1.0.8 (commitlint), and v1.0.9 (readability improvements).
+
+---
+
 ## 1.0.9
 
 *Released 2026-04-30*
