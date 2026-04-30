@@ -2,6 +2,9 @@
 
 An adaptive semantic AI execution engine for OpenCode that learns from past tasks and dynamically generates execution policy — **no hardcoded modes**.
 
+**Audience**: OpenCode users who want context-aware AI assistance that improves over time.
+**Prerequisites**: OpenCode CLI installed, basic TypeScript knowledge for programmatic API use.
+
 ## How It Works
 
 ```text
@@ -28,6 +31,8 @@ An adaptive semantic AI execution engine for OpenCode that learns from past task
 
 Every request is embedded into a 128-dimension vector, compared against past task memories via cosine similarity, and used to synthesize a dynamic execution policy that controls pipeline depth, tool usage, and reasoning intensity.
 
+The engine uses deterministic FNV-1a hashing for embeddings and in-memory cosine similarity retrieval with an LRU cap at 1,000 entries — no external APIs or services required.
+
 ## Core Design
 
 - **NO Redis** — fully in-process
@@ -35,11 +40,15 @@ Every request is embedded into a 128-dimension vector, compared against past tas
 - **NO external APIs** — deterministic embedding via character distribution
 - **NO FAST/DEEP/MCP modes** — policy is synthesized per-request
 
+With zero external runtime dependencies, the plugin operates entirely within your machine.
+
 ## Install
 
 ```bash
 npm install opencode-ai-os-v4-semantic
 ```
+
+Once installed, configure OpenCode to load the plugin.
 
 ## Usage (as an OpenCode plugin)
 
@@ -54,6 +63,8 @@ Add the plugin to your `opencode.json`:
 OpenCode will auto-load the plugin at startup. It hooks into `message.updated` events, runs the adaptive semantic engine on every user message, and injects the resulting policy + memory context into the session.
 
 Results are also logged via OpenCode's structured logging system (visible with debug-level logging).
+
+Additionally, the core engine is available for direct import in TypeScript/JavaScript projects.
 
 ## Programmatic API
 
@@ -73,6 +84,8 @@ console.log(result.similarity); // 0.92 (if similar to past task)
 // Check memory state
 console.log(memoryStore.size); // number of stored memories
 ```
+
+The engine returns a synthesized policy object that controls execution behavior.
 
 ## Policy Object
 
@@ -99,6 +112,8 @@ src/
 ```
 
 ## Contributing
+
+Issues and contributions are welcome.
 
 - [Bug reports & feature requests](https://github.com/dt418/opencode-ai-os-v4-semantic/issues/new/choose) — structured issue templates
 - [Changelog](CHANGELOG.md) — release history and changes
