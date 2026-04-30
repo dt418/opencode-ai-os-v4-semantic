@@ -8,25 +8,24 @@ An adaptive semantic AI execution engine for OpenCode that learns from past task
 ## How It Works
 
 ```text
-
-  Input  →  Embed  →  Memory Retrieval  →  Policy Synthesis  →  Planner  →  Coder
-                                                                              │
-                                                Reasoning depth >= 3 ? ◄──────┘
-                                               ╱ Yes              No ╲
-                                              ▼                      ▼
-                                          Reviewer                 Output
-                                              ╲                      ╱
-                                               ╲                    ╱
-                                                ╲                  ╱
-                                                  ▼                ▼
-                                                    Output
-                                                       │
-                                                       ▼
-                                                Semantic Memory
-                                                       │
-                                                       └─── next request ───┐
-                                                                              │
-                                                                                               Memory Retrieval ◄─────────────┘
+  ┌────────┬───────┬─────────────────┬───────────────────┬──────────┬───────┐
+  │ Input  │ Embed │ Memory Retrieval│ Policy Synthesis  │ Planner  │ Coder │
+  └────────┴───────┴────────┬────────┴────────┬──────────┴──────────┴───┬───┘
+                             │                 │                        │
+                             │ past vectors    │ policy object           │ plan
+                             │                 │                        │
+                        ┌────┘            ┌────┘             ┌──────────┘
+                        ▼                 ▼                  ▼
+               Semantic Memory    (similarity +        depth >= 3 ?
+                  (LRU 1000)       complexity)          ╱        ╲
+                        ▲                            Yes          No
+                        │                             ▼            ▼
+                        │                         Reviewer      Output
+                        │                             │            │
+                        │                             ▼            │
+                        └────────── store ──────── (result) ──────┘
+                                     (next
+                                    request)
 ```
 
 Every request is embedded into a 128-dimension vector, compared against past task memories via cosine similarity, and used to synthesize a dynamic execution policy that controls pipeline depth, tool usage, and reasoning intensity.
