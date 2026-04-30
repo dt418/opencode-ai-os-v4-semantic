@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.3
+
+*Apr 30, 2026*
+
+### Fixes
+
+- **ASCII art README diagram**: Replaced the Mermaid flowchart in the README with clean ASCII art for compatibility with npm's markdown renderer. The pipeline diagram now renders correctly on the package page.
+
+---
+
+## 1.0.2
+
+*Apr 30, 2026*
+
+### Improvements
+
+- **CHANGELOG.md**: Added this changelog with human-readable release notes covering v1.0.0 (initial release) and v1.0.1 (plugin rewrite).
+
+---
+
 ## 1.0.1
 
 *Apr 30, 2026*
