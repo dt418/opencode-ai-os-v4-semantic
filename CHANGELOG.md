@@ -1,5 +1,51 @@
 # Changelog
 
+## 1.0.9
+
+*Released 2026-04-30*
+
+### Documentation
+
+- **Readability improvements**: Added audience and prerequisites line, transition sentences between major sections (How It Works → Core Design, Install → Usage, Usage → Programmatic API), and plain-language explanations of FNV-1a hashing and LRU cap.
+
+---
+
+## 1.0.8
+
+*Released 2026-04-30*
+
+### CI/CD
+
+- **Commitlint**: Added `@commitlint/cli` with `@commitlint/config-conventional` to enforce conventional commit message format via lefthook's `commit-msg` hook.
+
+---
+
+## 1.0.7
+
+*Released 2026-04-30*
+
+### CI/CD
+
+- **GitHub Actions CI**: Added `ci.yml` workflow running typecheck, build, and test on Node 18, 20, and 22 for every push and pull request.
+
+### Chores
+
+- **Lefthook pre-commit hooks**: Typecheck, markdownlint, and test all run automatically before every commit.
+- **Markdownlint config**: Added project-wide markdown linting with relaxed rules for changelog style (no-duplicate-heading, no-emphasis-as-heading disabled).
+
+---
+
+## 1.0.6
+
+*Released 2026-04-30*
+
+### Documentation
+
+- **Changelog sync**: Backfilled v1.0.4 and v1.0.5 entries in CHANGELOG.md.
+- **Contributing links**: Added README section linking to issue templates and changelog.
+
+---
+
 ## 1.0.5
 
 *Released 2026-04-30*
